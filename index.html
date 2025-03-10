@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m-share示例</title>
+</head>
+
+<body>
+    <!-- 用于触发分享的按钮 -->
+    <button id="shareBtn">分享</button>
+
+    <!-- 引入m-share的JS文件 -->
+    <script src="node_modules/m-share/dist/m-share.js"></script>
+    <script>
+        // 配置分享内容
+        const config = {
+            link: 'https://keen-tarsier-47f6bc.netlify.app/pages/invite_page',
+            title: '示例分享标题',
+            desc: '这是一个m-share的示例分享描述',
+            imgUrl: 'https://keen-tarsier-47f6bc.netlify.app/images/cover.jpg',
+            types: ['wx', 'wxline', 'qq', 'qzone','sina']
+        };
+
+        // 针对微信平台的特殊配置
+        config.infoMap = {
+            wx: {
+                link: 'https://keen-tarsier-47f6bc.netlify.app/pages/invite_page',
+                title: '微信分享的特殊标题',
+                desc: '微信分享的特殊描述',
+                imgUrl: 'https://keen-tarsier-47f6bc.netlify.app/images/cover.jpg'
+            }
+        };
+
+        // 初始化m-share并进行分享
+        Mshare.init(config);
+
+
+        // 获取分享按钮元素
+        const shareBtn = document.getElementById('shareBtn');
+
+        // 为分享按钮添加点击事件监听器
+        shareBtn.addEventListener('click', function () {
+            Mshare.to('wx', config);
+        });
+    </script>
+</body>
+
+</html>
